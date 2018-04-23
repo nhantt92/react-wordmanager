@@ -4,6 +4,9 @@ import TaskForm from './components/TaskForm';
 import Control from './components/Control';
 import TaskList from './components/TaskList';
 import {findIndex} from 'lodash';
+import demo from './redux/demo';
+
+
 
 class App extends Component {
 
