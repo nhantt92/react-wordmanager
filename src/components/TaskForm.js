@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from './../actions/index';
 
 class TaskForm extends Component {
 
@@ -11,36 +13,9 @@ class TaskForm extends Component {
     }
   }
 
-  componentWillMount(){
-    if(this.props.task){
-      this.setState({
-        id: this.props.task.id,
-        name: this.props.task.name,
-        status: this.props.task.status
-      });
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps && nextProps.task) {
-      this.setState({
-        id: nextProps.task.id,
-        name: nextProps.task.name,
-        status: nextProps.task.status
-      });
-    }
-    else if(nextProps && nextProps.task === null){
-      this.setState({
-        id: '',
-        name: '',
-        status: false
-      });
-    }
-  }
-
-  onCloseForm=()=>{
-    this.props.onCloseForm();
-  }
+  // onCloseForm=()=>{
+  //   this.props.onCloseForm();
+  // }
 
   onChange=(event)=>{
     var target = event.target;
@@ -56,9 +31,10 @@ class TaskForm extends Component {
 
   onSubmit=(event)=>{
     event.preventDefault();
-    this.props.onSubmit(this.state);
+    //this.props.onSubmit(this.state);
+    this.props.onAddTask(this.state);
     this.onClear();
-    this.onCloseForm();
+    //this.onCloseForm();
   }
 
   onClear=()=>{
@@ -131,5 +107,16 @@ class TaskForm extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {}
+}
 
-export default TaskForm;
+const mapDispatchToProps = (dispatch, props)=>{
+  return {
+   onAddTask: (task) => {
+    dispatch(actions.addTask(task));
+   }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskForm);
