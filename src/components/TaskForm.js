@@ -12,11 +12,7 @@ class TaskForm extends Component {
       status : false
     }
   }
-
-  // onCloseForm=()=>{
-  //   this.props.onCloseForm();
-  // }
-
+  
   onChange=(event)=>{
     var target = event.target;
     var name = target.name;
@@ -43,6 +39,15 @@ class TaskForm extends Component {
       status: false
     });
   }
+
+  onOpenForm = () => {
+    this.props.onOpenForm();
+  }
+
+  onCloseForm = () => {
+    this.props.onCloseForm();
+  }
+
   render() {
     var {id} = this.state;
     return (
@@ -115,7 +120,13 @@ const mapDispatchToProps = (dispatch, props)=>{
   return {
    onAddTask: (task) => {
     dispatch(actions.addTask(task));
-   }
+   },
+    onOpenForm : () => {
+    dispatch(actions.openForm());
+  },
+    onCloseForm : () => {
+      dispatch(actions.closeForm());
+    }
   }
 }
 

@@ -7,14 +7,9 @@ var s4 = () => {
 var randomID = () => {
     return s4() + s4() + '-' + s4() + '-' + s4();
   }
-var test = {
-    id: 1,
-    name: 'Hoc lap trinh',
-    status: true
-}
 
 var data = JSON.parse(localStorage.getItem('tasks'));
-var initialSate = data?data:test;
+var initialSate = data?data:'';
 
 var myReducer = (state = initialSate, action) => {
     switch(action.type)

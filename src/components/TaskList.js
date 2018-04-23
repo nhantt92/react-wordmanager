@@ -27,7 +27,7 @@ class TaskList extends Component {
         var {filterName, filterStatus} = this.state;
         var elmTasks = tasks.map((task, index)=>{
             return <TaskItem 
-                        key = {task.id} 
+                        key = {index} 
                         index = {index} task = {task} 
                         onUpdateStatus={this.props.onUpdateStatus}
                         onDeleteItem={this.props.onDeleteItem}
@@ -76,11 +76,11 @@ class TaskList extends Component {
     }
 }
 
-const mapSateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         tasks: state.tasks
     }
   }
   
 
-export default connect(mapSateToProps, null)(TaskList);
+export default connect(mapStateToProps, null)(TaskList);

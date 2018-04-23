@@ -3,6 +3,8 @@ import './App.css';
 import TaskForm from './components/TaskForm';
 import Control from './components/Control';
 import TaskList from './components/TaskList';
+import { connect } from 'react-redux';
+import * as actions from './actions/index';
 
 class App extends Component {
 
@@ -11,32 +13,10 @@ class App extends Component {
     this.state = {}
   }
 
-
-
   onToggleForm = () => {
-    if (this.state.isDisplayForm && this.state.taskEditing !== null) {
-      this.setState({
-        isDisplayForm: true,
-        taskEditing: null
-      });
-    } else {
-      this.setState({
-        isDisplayForm: !this.state.isDisplayForm,
-        taskEditing: null
-      });
-    }
+   this.props.onToggleForm();
   }
-  onShowForm = () => {
-    this.setState({
-      isDisplayForm: true
-    });
-  }
-  onCloseForm = () => {
-    this.setState({
-      isDisplayForm: false
-    });
-  }
-
+  
   // onUpdateStatus = (id) => {
   //   var { tasks } = this.state;
   //   //var index = this.findIndex(id);
@@ -114,7 +94,7 @@ class App extends Component {
 
 
   render() {
-    var { isDisplayForm } = this.state;
+    var { isDisplayForm } = this.props;
     // if (filter) {
     //   if (filter.name) {
     //     tasks = tasks.filter((task) => {
@@ -192,6 +172,17 @@ class App extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    isDisplayForm : state.isDisplayForm
+  }
+}
 
-
-export default App;
+const mapDispatchToProps = (dispatch, props)=>{
+  return {
+    onToggleForm: () => {
+      dispatch(actions.toggleForm());
+   }
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(App);
