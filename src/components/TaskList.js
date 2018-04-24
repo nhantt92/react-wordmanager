@@ -29,7 +29,6 @@ class TaskList extends Component {
             return <TaskItem
                 key={index}
                 index={index} task={task}
-                onUpdateItem={this.props.onUpdateItem}
             />
         });
         return (
