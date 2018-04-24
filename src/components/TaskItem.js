@@ -8,10 +8,12 @@ class TaskItem extends Component {
 
     onDeleteItem = () => {
         this.props.onDeleteItem(this.props.task.id);
+        this.props.onCloseForm();
     }
 
     onUpdateItem = () => {
-        this.props.onUpdateItem(this.props.task.id);
+        this.props.onOpenForm();
+        this.props.onUpdateItem(this.props.task);
     }
     render() {
         var { task, index } = this.props;
@@ -57,6 +59,18 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         onUpdateStatus: (id) => {
             dispatch(actions.updateStatus(id));
+        },
+        onDeleteItem: (id) => {
+            dispatch(actions.deleteStatus(id));
+        },
+        onCloseForm: () => {
+            dispatch(actions.closeForm());
+        },
+        onUpdateItem: (task) => {
+            dispatch(actions.updateItem(task));
+        },
+        onOpenForm: () => {
+            dispatch(actions.openForm());
         }
     }
 }

@@ -21,21 +21,28 @@ var data = JSON.parse(localStorage.getItem('tasks'));
 var initialSate = data ? data : '';
 
 var myReducer = (state = initialSate, action) => {
+    var index = -1;
     switch (action.type) {
         case types.LIST_ALL:
             return state;
-        case types.ADD_TASK:
-            //console.log(action);
-            var newTask = {
-                id: randomID,
+        case types.SAVE_TASK:
+            console.log(action);
+            var task = {
+                id: action.task.id,
                 name: action.task.name,
-                status: action.task.status === 'true' ? true : false
+                status: action.task.status
+            };
+            if (!task.id) {
+                task.id = randomID();
+                state.push(task);
+            } else {
+                index = findIndex(state, task.id);
+                state[index] = task;
             }
-            state.push(newTask);
             localStorage.setItem('tasks', JSON.stringify(state));
             return [...state];
         case types.UPDATE_STATUS_TASK:
-            var index = findIndex(state, action.id);
+            index = findIndex(state, action.id);
             // if(index !== -1) {
             //     //state[index].status = !state[index].status;
             //     var cloneTask = {...state[index]}
@@ -45,6 +52,14 @@ var myReducer = (state = initialSate, action) => {
             state[index] = {
                 ...state[index],
                 status: !state[index].status
+            }
+            localStorage.setItem('tasks', JSON.stringify(state));
+            return [...state];
+        case types.DELETE_ITEM:
+            //console.log(action);
+            index = findIndex(state, action.id)
+            if (index !== -1) {
+                state.splice(index, 1);
             }
             localStorage.setItem('tasks', JSON.stringify(state));
             return [...state];

@@ -15,33 +15,13 @@ class App extends Component {
 
   onToggleForm = () => {
     this.props.onToggleForm();
+    this.props.onClearTask({
+      id: '',
+      name: '',
+      status: false
+    });
   }
 
-
-
-  // onDeleteItem = (id) => {
-  //   var { tasks } = this.state;
-  //   var index = this.findIndex(id);
-  //   if (id !== -1) {
-  //     tasks.splice(index, 1);
-  //   }
-  //   this.setState({
-  //     tasks: tasks
-  //   });
-  //   localStorage.setItem('tasks', JSON.stringify(tasks));
-  //   this.onCloseForm();
-  // }
-
-  // onUpdateItem = (id) => {
-  //   var { tasks } = this.state;
-  //   var index = this.findIndex(id);
-  //   var taskEditing = tasks[index];
-  //   //console.log(taskEditing);
-  //   this.setState({
-  //     taskEditing: taskEditing
-  //   });
-  //   this.onShowForm();
-  // }
   // onFilter = (filterName, filterStatus) => {
   //   filterStatus = parseInt(filterStatus, 10);
   //   //console.log(filterName + '-' + filterStatus + '-' + typeof (filterStatus));
@@ -67,8 +47,6 @@ class App extends Component {
   //     }
   //   });
   // }
-
-
 
   render() {
     var { isDisplayForm } = this.props;
@@ -104,9 +82,6 @@ class App extends Component {
     //     else return 0;
     //   });
     // }
-
-
-    var elmTaskForm = isDisplayForm ? <TaskForm /> : '';
     return (
       <div className="container">
         <div className="text-center">
@@ -114,7 +89,7 @@ class App extends Component {
         </div>
         <div className="row">
           <div className={isDisplayForm ? "col-xs-4 col-sm-4 col-md-4 col-lg-4" : ""}>
-            {elmTaskForm}
+          <TaskForm />
           </div>
           <div className={isDisplayForm ? "col-xs-8 col-sm-8 col-md-8 col-lg-8" : "col-xs-12 col-sm-12 col-md-12 col-lg-12"}>
             <button
@@ -137,8 +112,6 @@ class App extends Component {
             <div className="row mt-15">
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <TaskList
-                  onDeleteItem={this.onDeleteItem}
-                  onUpdateItem={this.onUpdateItem}
                   onFilter={this.onFilter} />
               </div>
             </div>
@@ -158,6 +131,9 @@ const mapDispatchToProps = (dispatch, props) => {
   return {
     onToggleForm: () => {
       dispatch(actions.toggleForm());
+    },
+    onClearTask: (task) => {
+      dispatch(actions.updateItem(task));
     }
   }
 }

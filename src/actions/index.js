@@ -6,9 +6,9 @@ export const listAll = () => {
     }
 }
 
-export const addTask = (task) => {
+export const saveTask = (task) => {
     return {
-        type: types.ADD_TASK,
+        type: types.SAVE_TASK,
         task
     }
 }
@@ -35,5 +35,19 @@ export const updateStatus = (id) => {
     return {
         type: types.UPDATE_STATUS_TASK,
         id
+    }
+}
+
+export const deleteStatus = (id) => {
+    return {
+        type: types.DELETE_ITEM,
+        id
+    }
+}
+
+export const updateItem = (task) => {
+    return {
+        type: types.UPDATE_ITEM,
+        task
     }
 }
