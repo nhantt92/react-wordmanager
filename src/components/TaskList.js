@@ -11,7 +11,7 @@ class TaskList extends Component {
             filterStatus: -1
         }
     }
-
+    
     onChange = (event) => {
         var target = event.target;
         var name = target.name;
@@ -23,7 +23,7 @@ class TaskList extends Component {
         this.props.onFilterTable(filter);
     }
     render() {
-        var { tasks, filterTable } = this.props;
+        var { tasks, filterTable, keyword, sort } = this.props;
         if (filterTable.name) {
             tasks = tasks.filter((task) => {
                 return task.name.toLowerCase().indexOf(filterTable.name.toLowerCase()) !== -1;
@@ -36,6 +36,27 @@ class TaskList extends Component {
                 return task.status === (filterTable.status === 1 ? true : false);
             }
         })
+        if (keyword) {
+            tasks = tasks.filter((task) => {
+                return task.name.toLowerCase().indexOf(keyword) !== -1;
+            });
+        }
+
+        if (sort.by === 'name') {
+            tasks.sort((a, b) => {
+                if (a.name.toLowerCase() > b.name.toLowerCase()) return sort.value;
+                else if (a.name.toLowerCase() < b.name.toLowerCase()) return -sort.value;
+                else return 0;
+            });
+        }
+        else {
+            tasks.sort((a, b) => {
+                if (a.status < b.status) return sort.value;
+                else if (a.status > b.status) return -sort.value;
+                else return 0;
+            });
+        }
+
         var elmTasks = tasks.map((task, index) => {
             return <TaskItem
                 key={index}
@@ -61,7 +82,7 @@ class TaskList extends Component {
                                 type="text"
                                 className="form-control"
                                 name="filterName"
-                                //value={filterName}
+                                value={filterTable.name}
                                 onChange={this.onChange}
                             />
                         </td>
@@ -69,7 +90,7 @@ class TaskList extends Component {
                             <select
                                 className="form-control"
                                 name="filterStatus"
-                                //value={filterStatus}
+                                value={filterTable.status}
                                 onChange={this.onChange}>
                                 <option value={-1}>Tất Cả</option>
                                 <option value={0}>Ẩn</option>
@@ -88,7 +109,9 @@ class TaskList extends Component {
 const mapStateToProps = (state) => {
     return {
         tasks: state.tasks,
-        filterTable: state.filterTable
+        filterTable: state.filterTable,
+        keyword: state.search,
+        sort: state.sort
     }
 }
 

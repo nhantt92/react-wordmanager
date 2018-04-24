@@ -26,42 +26,11 @@ class App extends Component {
       status: false
     });
   }
-  // onSearch = (keyword) => {
-  //   this.setState({
-  //     keyword: keyword
-  //   });
-  // }
-
-  // onSort = (sortBy, sortValue) => {
-  //   this.setState({
-  //     sort: {
-  //       by: sortBy,
-  //       value: sortValue
-  //     }
-  //   });
-  // }
 
   render() {
     var { isDisplayForm } = this.props;
-    // if (keyword) {
-    //   tasks = tasks.filter((task) => {
-    //     return task.name.toLowerCase().indexOf(keyword) !== -1;
-    //   });
-    // }
-    // if(sort.by === 'name'){
-    //   tasks.sort((a,b)=>{
-    //     if(a.name.toLowerCase() > b.name.toLowerCase()) return sort.value;
-    //     else if(a.name.toLowerCase() < b.name.toLowerCase()) return -sort.value;
-    //     else return 0;
-    //   });
-    // }
-    // else{
-    //   tasks.sort((a,b)=>{
-    //     if(a.status < b.status) return sort.value;
-    //     else if(a.status > b.status) return -sort.value;
-    //     else return 0;
-    //   });
-    // }
+ 
+  
     return (
       <div className="container">
         <div className="text-center">
@@ -85,9 +54,7 @@ class App extends Component {
               Thêm Công Việc
                 </button>
             &nbsp;
-            <Control
-              onSearch={this.onSearch}
-              onSort={this.onSort} />
+            <Control/>
             <br />
             <div className="row mt-15">
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
