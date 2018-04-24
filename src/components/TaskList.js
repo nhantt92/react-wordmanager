@@ -11,7 +11,7 @@ class TaskList extends Component {
             filterStatus: -1
         }
     }
-    
+
     onChange = (event) => {
         var target = event.target;
         var name = target.name;

@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import * as actions from './../actions/index';
 
 class Search extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             keyword: ''
         }
     }
 
-    onChange = (event) =>{
+    onChange = (event) => {
         var target = event.target;
         var name = target.name;
         var value = target.value;
@@ -19,7 +19,7 @@ class Search extends Component {
         });
     }
 
-    onSearch = () =>{
+    onSearch = () => {
         this.props.onSearch(this.state.keyword);
     }
 
@@ -33,14 +33,13 @@ class Search extends Component {
                         className="form-control"
                         placeholder="Nhập từ khoá..."
                         value={this.state.keyword}
-                        onChange = {this.onChange}
+                        onChange={this.onChange}
                     />
                     <span className="input-group-btn">
                         <button
                             className="btn btn-primary"
                             type="button"
-                            onClick = {this.onSearch}
-                            >
+                            onClick={this.onSearch}>
                             <span className="fa fa-search mr-5"></span>
                             &nbsp;
                             Tìm
@@ -52,15 +51,15 @@ class Search extends Component {
     }
 }
 
-const mapStateToProps = state =>{
+const mapStateToProps = state => {
     return {
-        
+
     }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
     return {
-        onSearch: (keyword) =>{
+        onSearch: (keyword) => {
             dispatch(actions.searchTask(keyword));
         }
     }

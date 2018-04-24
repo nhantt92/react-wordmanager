@@ -70,7 +70,6 @@ class Sort extends Component {
     }
 }
 
-
 const mapStateToProps = state => {
     return {
         sort: state.sort
