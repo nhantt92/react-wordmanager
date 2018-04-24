@@ -17,21 +17,7 @@ class App extends Component {
    this.props.onToggleForm();
   }
   
-  // onUpdateStatus = (id) => {
-  //   var { tasks } = this.state;
-  //   //var index = this.findIndex(id);
-  //   var index = findIndex(tasks, (task)=>{
-  //     return task.id === id;
-  //   })
-  //   //console.log(index);
-  //   if (index !== -1) {
-  //     tasks[index].status = !tasks[index].status;
-  //     this.setState({
-  //       tasks: tasks
-  //     });
-  //     localStorage.setItem('tasks', JSON.stringify(tasks));
-  //   }
-  // }
+ 
 
   // onDeleteItem = (id) => {
   //   var { tasks } = this.state;
@@ -82,15 +68,6 @@ class App extends Component {
   //   });
   // }
 
-  // findIndex = (id) => {
-  //   var { tasks } = this.state;
-  //   var result = -1;
-  //   tasks.forEach((task, index) => {
-  //     if (task.id === id)
-  //       result = index;
-  //   });
-  //   return result;
-  // }
 
 
   render() {
