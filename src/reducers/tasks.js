@@ -36,8 +36,15 @@ var myReducer = (state = initialSate, action) => {
             return [...state];
         case types.UPDATE_STATUS_TASK:
             var index = findIndex(state, action.id);
-            if(index !== -1) {
-                state[index].status = !state[index].status;
+            // if(index !== -1) {
+            //     //state[index].status = !state[index].status;
+            //     var cloneTask = {...state[index]}
+            //     cloneTask.status = !cloneTask.status;
+            //     state[index] = cloneTask;
+            // }
+            state[index] = {
+                ...state[index],
+                status: !state[index].status
             }
             localStorage.setItem('tasks', JSON.stringify(state));
             return [...state];
