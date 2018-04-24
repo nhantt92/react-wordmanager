@@ -26,18 +26,6 @@ class App extends Component {
       status: false
     });
   }
-
-  // onFilter = (filterName, filterStatus) => {
-  //   filterStatus = parseInt(filterStatus, 10);
-  //   //console.log(filterName + '-' + filterStatus + '-' + typeof (filterStatus));
-  //   this.setState({
-  //     filter: {
-  //       name: filterName.toLowerCase(),
-  //       status: filterStatus
-  //     }
-  //   })
-  // }
-
   // onSearch = (keyword) => {
   //   this.setState({
   //     keyword: keyword
@@ -55,19 +43,6 @@ class App extends Component {
 
   render() {
     var { isDisplayForm } = this.props;
-    // if (filter) {
-    //   if (filter.name) {
-    //     tasks = tasks.filter((task) => {
-    //       return task.name.toLowerCase().indexOf(filter.name) !== -1;
-    //     })
-    //   }
-    //   tasks = tasks.filter((task) => {
-    //     if (filter.status === -1)
-    //       return task;
-    //     else
-    //       return task.status === (filter.status === 1 ? true : false);
-    //   })
-    // }
     // if (keyword) {
     //   tasks = tasks.filter((task) => {
     //     return task.name.toLowerCase().indexOf(keyword) !== -1;
@@ -116,8 +91,7 @@ class App extends Component {
             <br />
             <div className="row mt-15">
               <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <TaskList
-                  onFilter={this.onFilter} />
+                <TaskList />
               </div>
             </div>
           </div>
